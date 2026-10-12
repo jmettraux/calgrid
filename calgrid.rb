@@ -57,6 +57,10 @@ puts %{
       min-width: #{side}cm;
       max-width: #{side}cm;
     }
+    td.wn {
+      width: #{1.3 * side}cm;
+      min-width: #{1.3 * side}cm;
+    }
     td.sunday { border-bottom: 1px solid #{grey}; }
     .title { font-weight: bold; }
   }
@@ -98,7 +102,12 @@ puts "</tr>"
   print "<tr>"
   print "<td class='wday #{wd}'>#{t.strftime('%a')}</td>"
   print "<td class='mday #{wd}'>#{t.strftime('%d')}</td>"
-  sqc.times { print "<td class='sq #{wd}'></td>" }
+
+  wn = t.wday == 1 ? "w#{t.strftime('%W').to_i + 1}" : ''
+  print "<td class='sq #{wd} wn'>#{wn}</td>"
+
+  (sqc - 1).times { print "<td class='sq #{wd}'></td>" }
+
   puts "</tr>"
 end
 

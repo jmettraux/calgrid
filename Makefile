@@ -1,4 +1,4 @@
 
 generate:
-	ruby calgrid.rb > ~/Downloads.out.html
+	ruby calgrid.rb > ~/Downloads/out.html
 
