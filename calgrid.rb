@@ -6,13 +6,15 @@ require 'time'
 
 numbers = ARGV.select { |a| a.match?(/^\d+$/) }.map(&:to_i)
 year = numbers.find { |n| n > 2025 } || Time.now.year
-month = numbers.find { |n| n > 0 && n < 13 } || Time.now.month
+
+month = numbers.find { |n| n > 0 && n < 13 } || Time.now.month + 1
+month = 1 if month > 12
 
 grey = '#777777'
 lightgrey = '#bbbbbb'
 
-w = 14 # cm
-side = 0.75
+w = 15.5 # width in cm approx
+side = 0.70
 cols = (w.to_f / side).to_i + 1
 sqc = cols - 3
 
@@ -92,8 +94,17 @@ puts "</tr>"
 print "<tr>"
 print "<td class='wday'></td>"
 print "<td class='mday'></td>"
-sqc.times { print "<td class='sq'></td>" }
+print "<td class='sq'></td>"
+(sqc - 1).times { |i| print "<td class='sq'>#{'%02d' % (5 + i)}</td>" }
 puts "</tr>"
+
+2.times do
+  print "<tr>"
+  print "<td class='wday'></td>"
+  print "<td class='mday'></td>"
+  sqc.times { print "<td class='sq'></td>" }
+  puts "</tr>"
+end
 
 (1..31).each do |d|
   t = Time.parse("#{year}-#{month}-#{d} 12:00")
