@@ -46,25 +46,31 @@ puts %{
     border-collapse: collapse;
     td {
       box-sizing: border-box;
-      height:     #{side}cm;
-      min-height: #{side}cm;
-      max-height: #{side}cm;
+      height:      #{side}cm;
+      min-height:  #{side}cm;
+      max-height:  #{side}cm;
       border: 1px dotted #{lightgrey};
       padding-left: 3px;
     }
     td.wday { width: #{1.4 * side}cm; }
     td.mday { width: #{side}cm; }
     td.sq {
-      width: #{side}cm;
-      min-width: #{side}cm;
-      max-width: #{side}cm;
+      width:      #{side}cm;
+      min-width:  #{side}cm;
+      max-width:  #{side}cm;
     }
     td.wn {
       width: #{1.3 * side}cm;
       min-width: #{1.3 * side}cm;
     }
     td.sunday { border-bottom: 1px solid #{grey}; }
-    .title { font-weight: bold; }
+    .title {
+      vertical-align: top;
+      font-weight: bold;
+      height:       #{1.4 * side}cm;
+      min-height:   #{1.4 * side}cm;
+      max-height:   #{1.4 * side}cm;
+    }
   }
 </style>
   }.strip
@@ -87,7 +93,7 @@ puts "<table>"
 puts "<tbody>"
 
 print "<tr>"
-print "<td class='title' colspan='#{sqc + 2}'>#{t.strftime('%Y %B')}</td>"
+print "<td class='title' colspan='#{sqc + 2}'>## #{t.strftime('%Y %B')}</td>"
 #sqc.times { print "<td class='sq'></td>" }
 puts "</tr>"
 
